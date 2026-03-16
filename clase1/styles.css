@@ -1,0 +1,196 @@
+/* Estilos Generales */
+body {
+    font-family: 'Helvetica', Arial, sans-serif; 
+    margin: 0; 
+    background-color: #f4f4f4; 
+}
+a {
+    text-decoration: none;   
+    color: inherit;         
+    cursor: pointer;         
+}     
+
+/* Ajuste de la Navbar */
+.navbar {
+    display: flex;
+    align-items: center; 
+    background: #fff;
+    border-bottom: 3px solid #e11b22;
+    padding: 10px 5%;
+}
+
+/*suscripción  */
+.boton-suscribirse {
+    margin-left: auto; 
+    
+    background-color: #e11b22;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    display: inline-block;
+}
+
+
+
+
+
+.logo { 
+    margin-left: 20px; 
+    font-weight: bold; 
+    color: #ff0008; 
+    font-size: 24px; 
+}
+
+/* Contenedor Principal (Grid) */
+.container { 
+    max-width: 1200px; 
+    margin: 20px auto; 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 20px; 
+    padding: 0 15px; 
+}
+
+/* Noticia Principal (Izquierda) */
+.main-story { 
+    background: white; 
+    padding: 0; 
+    border-bottom: 3px solid #ddd; 
+}
+
+.main-story img { 
+    width: 100%; 
+    height: auto; 
+}
+
+.content-padding { 
+    padding: 20px; 
+}
+
+.category-tag {
+    color: #e11b22; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    font-size: 14px; 
+}
+
+.main-story h1 { 
+    font-size: 36px; 
+    margin: 10px 0; 
+    line-height: 1.1; 
+}
+
+/* Columna Derecha */
+.side-column { 
+    display: flex; 
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.side-story { 
+    background: white; 
+    display: flex; 
+    flex-direction: column; 
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 10px; 
+}
+
+.side-story img { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+}
+
+/* Noticia Pequeña (Horizontal) */
+.mini-story { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+    background: white; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px; 
+}
+
+/* Contenedor para centrar el anuncio */
+.contenedor-anuncio {
+    width: 50%;
+    height: 25%;
+    max-width: 1000px;    
+    margin: 20px auto;   
+    text-align: center;   
+}
+
+
+/* Estilo de la imagen del anuncio */
+.imagen-anuncio {
+    width: 100%;          
+    height: auto;         
+    border: 1px solid #cccccc; 
+    display: block;       
+    margin: 0 auto;
+}
+
+/* El texto chiquito de "Publicidad" */
+.texto-anuncio {
+    font-size: 10px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+
+
+
+/* Contenedor del Tablero */
+.tablero-noticias {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+    
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    gap: 20px;                             /* Espacio entre tarjetas */
+}
+
+
+.tarjeta-noticia {
+    background-color: #ffffff;
+    border-bottom: 3px solid #ddd;
+    overflow: hidden; /* Para que la imagen no se salga si hay bordes redondeados */
+}
+
+.tarjeta-noticia img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; 
+    display: block;
+}
+
+.tarjeta-info {
+    padding: 15px;
+}
+
+.tarjeta-info h4 {
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+
+
+.mini-story img { 
+    width: 100%; 
+    height: 100px; 
+    object-fit: cover; 
+}
+
+@media (max-width: 768px) {
+    .container { 
+        grid-template-columns: 1fr; 
+    }
+}
