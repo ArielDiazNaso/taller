@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Ejercicios Académicos</title>
+    <!-- Bootstrap 5 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos Externos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container py-5">
+        <header class="text-center mb-5">
+            <h1 class="display-5 fw-bold header-title">Reporte de Ejercicios Académicos</h1>
+            <p class="lead">Visualización dinámica de resultados modulares</p>
+        </header>
+
+        <!-- Loading Spinner -->
+        <div id="loading-spinner" class="text-center py-5">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando resultados...</span>
+            </div>
+            <p class="mt-2">Obteniendo datos del servidor...</p>
+        </div>
+
+        <!-- Mensaje de Error -->
+        <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+
+        <!-- Main Content (2x2 Grid on Desktop, 1 Column on Mobile) -->
+        <div id="main-content" class="row g-4 d-none">
+            
+            <!-- Ejercicio 1 -->
+            <section id="section-ex1" class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">Ejercicio 1: Saludos</div>
+                    <div class="card-body" id="content-ex1">
+                        <!-- Content via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ejercicio 2 -->
+            <section id="section-ex2" class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">Ejercicio 2: Operaciones Simples</div>
+                    <div class="card-body" id="content-ex2">
+                        <!-- Content via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ejercicio 3 -->
+            <section id="section-ex3" class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">Ejercicio 3: Funciones de Apoyo</div>
+                    <div class="card-body" id="content-ex3">
+                        <!-- Content via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ejercicio 4 -->
+            <section id="section-ex4" class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">Ejercicio 4: Operaciones Matemáticas</div>
+                    <div class="card-body" id="content-ex4">
+                        <!-- Content via JS (Table/List Group) -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Academia de Desarrollo Node.js - Estética Old Money</p>
+        </footer>
+    </div>
+
+    <!-- Script Externo -->
+    <script src="script.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
