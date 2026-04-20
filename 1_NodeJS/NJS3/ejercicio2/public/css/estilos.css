@@ -1,0 +1,20 @@
+/* Altura mínima para que la tarjeta no salte mucho al cambiar de pestaña */
+.min-vh-50 {
+    min-height: 400px;
+}
+
+/* Efecto de transición suave para los componentes */
+.seccion-clase {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejoras visuales para el menú */
+.list-group-item.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}

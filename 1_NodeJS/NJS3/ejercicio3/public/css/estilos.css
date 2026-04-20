@@ -1,0 +1,21 @@
+/* Altura mínima para que el diseño no colapse en pantallas grandes */
+.min-vh-50 {
+    min-height: 450px;
+}
+
+/* Efecto de transición para móviles */
+.seccion-content {
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mejoras táctiles para el menú en celulares */
+@media (max-width: 991px) {
+    .list-group-item {
+        padding: 15px;
+    }
+}
