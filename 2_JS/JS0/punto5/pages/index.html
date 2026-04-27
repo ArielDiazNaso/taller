@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto 5 - splice()</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Método splice()</h1>
+        </header>
+        <main>
+            <section class="card">
+                <h2>1. Eliminar 2 elementos desde pos 1</h2>
+                <div class="controls">
+                    <button id="botonEliminarSplice">Eliminar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Letras:</strong>
+                    <p id="resultadoLetras">["A", "B", "C", "D", "E"]</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>2. Insertar nombre en pos 2</h2>
+                <div class="controls">
+                    <input type="text" id="entradaNombre" placeholder="Nuevo nombre">
+                    <button id="botonInsertarSplice">Insertar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Nombres:</strong>
+                    <p id="resultadoNombres">["Ana", "Juan", "Pedro"]</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>3. Reemplazar 2 elementos</h2>
+                <div class="controls">
+                    <button id="botonReemplazarSplice">Reemplazar 2 por "X" e "Y"</button>
+                </div>
+                <div class="result-box">
+                    <strong>Array:</strong>
+                    <p id="resultadoReemplazo">[1, 2, 3, 4, 5]</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
