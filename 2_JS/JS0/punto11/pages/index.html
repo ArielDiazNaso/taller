@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto 11 - filter()</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Método filter()</h1>
+        </header>
+        <main>
+            <section class="card">
+                <h2>1. Números mayores a 10</h2>
+                <div class="controls">
+                    <button id="botonFiltrarNumeros">Filtrar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Original:</strong> [5, 12, 8, 130, 44] <br>
+                    <strong>Filtrados:</strong> <p id="resultadoNumeros">[]</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>2. Palabras con más de 5 letras</h2>
+                <div class="controls">
+                    <button id="botonFiltrarPalabras">Filtrar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Original:</strong> ["sol", "estrella", "luna", "planeta"] <br>
+                    <strong>Filtradas:</strong> <p id="resultadoPalabras">[]</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>3. Usuarios Activos</h2>
+                <div class="controls">
+                    <button id="botonFiltrarActivos">Filtrar Activos</button>
+                </div>
+                <div class="result-box">
+                    <strong>Todos los Usuarios:</strong>
+                    <p id="listaUsuarios">-</p>
+                    <hr>
+                    <strong>Nombres de Activos:</strong>
+                    <p id="resultadoActivos">[]</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>

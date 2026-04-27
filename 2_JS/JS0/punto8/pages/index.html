@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto 8 - includes()</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Método includes()</h1>
+        </header>
+        <main>
+            <section class="card">
+                <h2>1. ¿Contiene "admin"?</h2>
+                <div class="controls">
+                    <button id="botonVerificarAdmin">Verificar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Array:</strong> ["user", "guest", "admin"] <br>
+                    <strong>Resultado:</strong> <p id="resultadoAdmin">-</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>2. ¿Existe el color "verde"?</h2>
+                <div class="controls">
+                    <button id="botonVerificarVerde">Verificar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Array:</strong> ["rojo", "azul", "amarillo"] <br>
+                    <strong>Resultado:</strong> <p id="resultadoVerde">-</p>
+                </div>
+            </section>
+            <section class="card">
+                <h2>3. Agregar número si no existe</h2>
+                <div class="controls">
+                    <input type="number" id="entradaNumero" placeholder="Número">
+                    <button id="botonAgregarNumero">Agregar</button>
+                </div>
+                <div class="result-box">
+                    <strong>Array:</strong> <p id="resultadoNumeros">[1, 2, 3]</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../scripts/main.js"></script>
+</body>
+</html>
