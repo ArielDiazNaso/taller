@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Editorial Elite - Redacción de Noticias</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="editorial-header">
+            <h1 class="brand-title">Elite Editorial CMS</h1>
+            <p class="brand-tagline">Sistema de Gestión de Contenidos para la Alta Prensa</p>
+            <div class="header-divider"></div>
+        </header>
+
+        <main class="cms-layout">
+            <!-- Sección de Redacción -->
+            <section class="composition-panel">
+                <div class="paper-container">
+                    <h2 class="panel-title">Nueva Publicación</h2>
+                    
+                    <div id="notificationContainer"></div>
+
+                    <form id="formularioNoticia" class="editorial-form">
+                        <div class="form-row">
+                            <div class="form-group col-full">
+                                <label for="titular">Titular de la Noticia</label>
+                                <input type="text" id="titular" name="titular" placeholder="Mínimo 10 caracteres" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-full">
+                                <label for="subtitulo">Subtítulo o Resumen</label>
+                                <input type="text" id="subtitulo" name="subtitulo" placeholder="Breve descripción" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-full">
+                                <label for="cuerpo">Cuerpo de la Noticia</label>
+                                <textarea id="cuerpo" name="cuerpo" rows="6" placeholder="Mínimo 50 caracteres" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row flex-row">
+                            <div class="form-group col-half">
+                                <label for="categoria">Categoría</label>
+                                <select id="categoria" name="categoria" required>
+                                    <option value="" disabled selected>Seleccione...</option>
+                                    <option value="Política">Política</option>
+                                    <option value="Economía">Economía</option>
+                                    <option value="Cultura">Cultura</option>
+                                    <option value="Internacional">Internacional</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-half">
+                                <label for="autor">Autor</label>
+                                <input type="text" id="autor" name="autor" placeholder="Nombre del redactor" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-full">
+                                <label for="imagenUrl">URL de la Imagen</label>
+                                <input type="url" id="imagenUrl" name="imagenUrl" placeholder="https://ejemplo.com/imagen.jpg" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row flex-row">
+                            <div class="form-group col-half">
+                                <label for="fecha">Fecha de Publicación</label>
+                                <input type="date" id="fecha" name="fecha" required>
+                            </div>
+                            <div class="form-group col-half">
+                                <label for="prioridad">Prioridad</label>
+                                <select id="prioridad" name="prioridad" required>
+                                    <option value="Baja">Baja</option>
+                                    <option value="Media" selected>Media</option>
+                                    <option value="Alta">Alta</option>
+                                    <option value="Urgente">Urgente</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-editorial">Publicar Noticia</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Sección de Muro de Noticias -->
+            <section class="feed-panel">
+                <h2 class="panel-title">Muro Editorial</h2>
+                <div id="muroNoticias" class="news-grid">
+                    <!-- Las noticias se renderizarán aquí -->
+                    <div class="empty-feed">Esperando nuevas crónicas...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>

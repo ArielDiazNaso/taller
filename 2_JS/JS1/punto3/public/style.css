@@ -1,0 +1,266 @@
+/* Paleta de Colores "Old Money" & Premium */
+:root {
+    --parchment: #F9F7F2;
+    --oxford-blue: #1B263B;
+    --antique-gold: #8C7851;
+    --muted-gold: #997A36;
+    --bronze: rgba(140, 120, 81, 0.4);
+    --error-burgundy: #6B2D2D;
+    --success-green: #2D4F36;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+}
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+                url('https://www.transparenttextures.com/patterns/pinstriped-suit.png'), /* Sutil textura de traje */
+                #F2EF E9;
+    background-attachment: fixed;
+    background-size: auto;
+    font-family: 'Merriweather', serif;
+    color: var(--oxford-blue);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Efecto de fondo atmosférico (opcional si se prefiere una imagen real) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop') no-repeat center center; /* Biblioteca clásica desenfocada */
+    background-size: cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Tipografía */
+.title-elite {
+    font-family: 'Playfair Display', serif;
+    color: var(--oxford-blue);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.subtitle-elite {
+    font-style: italic;
+    color: var(--antique-gold);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Glassmorphism Card */
+.card-elite {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--bronze);
+    border-radius: 4px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+/* Estilo de los Inputs (Minimalistas y Refinados) */
+.form-floating-elite {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-control-elite, .form-select-elite {
+    border: none;
+    border-bottom: 1px solid rgba(27, 38, 59, 0.2);
+    border-radius: 0;
+    padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+    background-color: transparent;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    font-family: 'Merriweather', sans-serif;
+    color: var(--oxford-blue);
+    font-size: 1rem;
+}
+
+.form-control-elite:focus, .form-select-elite:focus {
+    outline: none;
+    border-bottom: 1px solid var(--antique-gold);
+    box-shadow: 0 5px 15px -5px rgba(140, 120, 81, 0.2);
+}
+
+.form-floating-elite label {
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--antique-gold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Signature Button */
+.btn-elite {
+    background-color: var(--oxford-blue);
+    color: var(--parchment);
+    border: 1px solid var(--antique-gold);
+    border-radius: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+}
+
+.btn-elite::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--antique-gold);
+    transition: left 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+}
+
+.btn-elite:hover {
+    color: var(--oxford-blue);
+}
+
+.btn-elite:hover::before {
+    left: 0;
+}
+
+/* Checkboxes y Radios */
+.form-check-input-elite {
+    border-color: var(--antique-gold);
+    background-color: transparent;
+}
+
+.form-check-input-elite:checked {
+    background-color: var(--antique-gold);
+    border-color: var(--antique-gold);
+}
+
+/* Alertas Estilo "Premium Banner" */
+#alertContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1060;
+    width: 350px;
+}
+
+.alert-premium {
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: slideDownFadeIn 0.5s forwards;
+    padding: 1.5rem;
+}
+
+@keyframes slideDownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-premium-success {
+    background: var(--success-green);
+    border-left: 5px solid #4a8c5f;
+}
+
+.alert-premium-error {
+    background: var(--error-burgundy);
+    border-left: 5px solid #a34a4a;
+}
+
+/* Directorio de Miembros (Elevado) */
+.member-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(140, 120, 81, 0.1);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-top: 3px solid var(--antique-gold);
+}
+
+.member-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.member-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    color: var(--oxford-blue);
+    font-weight: 700;
+}
+
+.member-card p {
+    color: var(--antique-gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* Estilos para los datos dentro de la tarjeta de miembro */
+.label-elite-card {
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: var(--antique-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: -2px;
+}
+
+.data-elite-card {
+    font-size: 0.9rem !important;
+    color: var(--oxford-blue) !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px !important;
+    font-weight: 400 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Validaciones y Errores (Más visibles) */
+.is-invalid-elite {
+    border-bottom: 2px solid var(--error-burgundy) !important;
+    background-color: rgba(107, 45, 45, 0.05) !important;
+}
+
+.invalid-feedback-custom {
+    color: var(--error-burgundy);
+    font-size: 0.8rem;
+    margin-top: 8px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    display: block;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

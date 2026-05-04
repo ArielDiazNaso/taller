@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Premium - Círculo Elite</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="split-screen">
+        <!-- Parte Izquierda: Imagen Arquitectura -->
+        <section class="left-panel">
+            <div class="overlay"></div>
+            <div class="content-left">
+                <h1 class="brand-title">Círculo Elite</h1>
+                <p class="brand-tagline">Herencia, Prestigio y Verdad.</p>
+            </div>
+        </section>
+
+        <!-- Parte Derecha: Formulario de Suscripción -->
+        <section class="right-panel">
+            <!-- Vista de Inicio (Landing) -->
+            <div id="landingView" class="view">
+                <h2 class="section-title">Novedades de la Aristocracia</h2>
+                <p class="section-desc">Acceda a análisis exclusivos y crónicas de alto nivel directamente en su despacho.</p>
+                <button id="btnStart" class="btn-signature">Comenzar Suscripción</button>
+            </div>
+
+            <!-- Vista de Formulario -->
+            <div id="formView" class="view d-none">
+                <h2 class="section-title">Suscripción Ilustre</h2>
+                <p class="section-desc">Complete sus datos para unirse a nuestra selecta audiencia.</p>
+                
+                <div id="alertContainer"></div>
+
+                <form id="subscriptionForm" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Su nombre" required>
+                        <span class="error-msg" id="error-nombre"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Su apellido" required>
+                        <span class="error-msg" id="error-apellido"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+                        <span class="error-msg" id="error-email"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-signature">Confirmar Suscripción</button>
+                        <button type="button" id="btnBack" class="btn-text">Volver</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Vista de Éxito -->
+            <div id="successView" class="view d-none">
+                <div class="success-icon">◈</div>
+                <h2 class="section-title">Bienvenido al Círculo</h2>
+                <p id="successMessage" class="section-desc"></p>
+                <button onclick="location.reload()" class="btn-signature">Finalizar</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>

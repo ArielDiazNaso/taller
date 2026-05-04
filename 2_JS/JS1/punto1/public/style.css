@@ -1,0 +1,244 @@
+/* Paleta Premium */
+:root {
+    --parchment: #F9F7F2;
+    --oxford-blue: #1B263B;
+    --antique-gold: #8C7851;
+    --white: #FFFFFF;
+    --error-burgundy: #6B2D2D;
+    --success-green: #2D4F36;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), 
+                url('https://www.transparenttextures.com/patterns/pinstriped-suit.png'),
+                #F2EF E9;
+    color: var(--oxford-blue);
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+/* Fondo Atmosférico de Biblioteca */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.split-screen {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Panel Izquierdo */
+.left-panel {
+    flex: 1; /* Esto asegura el 50% */
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1518005020250-675f0403172c?q=80&w=1500&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(27, 38, 59, 0.7);
+}
+
+.content-left {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--white);
+}
+
+.brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.brand-tagline {
+    font-style: italic;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Panel Derecho */
+.right-panel {
+    flex: 1; /* Esto asegura el 50% */
+    background: transparent; /* El fondo lo da el body con la biblioteca */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    position: relative;
+    border-left: 1px solid var(--antique-gold);
+}
+
+.view {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border: 1px solid rgba(140, 120, 81, 0.3);
+    border-radius: 4px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.d-none {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--oxford-blue);
+}
+
+.section-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2.5rem;
+}
+
+/* Formulario */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--antique-gold);
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(27, 38, 59, 0.2);
+    background: transparent;
+    padding: 0.8rem 0;
+    font-family: sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.4s;
+    color: var(--oxford-blue);
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: var(--antique-gold);
+}
+
+/* Botones */
+.btn-signature {
+    background-color: var(--oxford-blue);
+    color: var(--white);
+    border: 1px solid var(--antique-gold);
+    padding: 1rem 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.4s;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.btn-signature:hover {
+    background-color: var(--antique-gold);
+    color: var(--oxford-blue);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--antique-gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: underline;
+    width: 100%;
+}
+
+/* Errores y Alertas */
+.error-msg {
+    color: var(--error-burgundy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: block;
+    margin-top: 5px;
+    min-height: 1rem;
+}
+
+.is-invalid {
+    border-bottom-color: var(--error-burgundy) !important;
+}
+
+.alert-box {
+    padding: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+}
+
+.alert-error {
+    background-color: rgba(107, 45, 45, 0.1);
+    border-color: var(--error-burgundy);
+    color: var(--error-burgundy);
+}
+
+/* Éxito */
+.success-icon {
+    font-size: 3rem;
+    color: var(--antique-gold);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+    .left-panel {
+        display: none;
+    }
+    .right-panel {
+        width: 100%;
+    }
+}
