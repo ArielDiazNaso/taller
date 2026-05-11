@@ -1,0 +1,18 @@
+REPORTE DE CALIFICACIONES
+==========================
+Estudiante: Nose
+Documento: 123456789123456
+--------------------------
+Notas:
+  - Nota 1: 1
+  - Nota 2: 3
+  - Nota 3: 10
+  - Nota 4: 5
+  - Nota 5: 1.2
+  - Nota 6: 1
+  - Nota 7: 10
+  - Nota 8: 3
+  - Nota 9: 2
+  - Nota 10: 2
+==========================
+Fecha de guardado: 11/5/2026, 17:57:00

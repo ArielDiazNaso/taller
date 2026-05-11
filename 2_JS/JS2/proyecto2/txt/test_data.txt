@@ -1,0 +1,10 @@
+REPORTE DE PRUEBA
+DNI: 123456781
+Nota 1: 525
+Nota 2: 123
+Nota 3: 8
+Nota 4: 10
+Nota 5: 454
+ID Estudiante: 101
+Otro Valor: 99
+Valor Inutil: 12

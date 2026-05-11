@@ -1,0 +1,18 @@
+REPORTE DE CALIFICACIONES
+==========================
+Estudiante: nose
+Documento: 1231231
+--------------------------
+Notas:
+  - Nota 1: 100
+  - Nota 2: 12
+  - Nota 3: 12
+  - Nota 4: 32
+  - Nota 5: 12
+  - Nota 6: 12
+  - Nota 7: 90
+  - Nota 8: 21
+  - Nota 9: 32
+  - Nota 10: 32
+==========================
+Fecha de guardado: 11/5/2026, 18:16:51

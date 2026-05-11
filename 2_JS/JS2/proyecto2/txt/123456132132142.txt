@@ -1,0 +1,19 @@
+REPORTE DE CALIFICACIONES
+==========================
+Estudiante: Yo
+Documento: 123456132132142
+--------------------------
+Notas:
+  - Nota 1: 10
+  - Nota 2: 10
+  - Nota 3: 2
+  - Nota 4: 3
+  - Nota 5: 1
+  - Nota 6: 2
+  - Nota 7: 2
+  - Nota 8: 5
+  - Nota 9: 3
+  - Nota 10: 4
+  - Nota 11: 1
+==========================
+Fecha de guardado: 11/5/2026, 17:59:07

@@ -1,0 +1,18 @@
+REPORTE DE CALIFICACIONES
+==========================
+Estudiante: ys
+Documento: 123213123
+--------------------------
+Notas:
+  - Nota 1: 122
+  - Nota 2: 123
+  - Nota 3: 121
+  - Nota 4: 123
+  - Nota 5: 323
+  - Nota 6: 131
+  - Nota 7: 121
+  - Nota 8: 454
+  - Nota 9: 421
+  - Nota 10: 100
+==========================
+Fecha de guardado: 11/5/2026, 18:46:22

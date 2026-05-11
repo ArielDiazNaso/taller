@@ -1,0 +1,155 @@
+/* Variables de Colores para Temas */
+:root {
+    --bg-body: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    --bg-card: #ffffff;
+    --text-main: #333333;
+    --text-muted: #6c757d;
+    --border-color: #dee2e6;
+    --input-bg: #ffffff;
+    --input-text: #333333;
+    --input-placeholder: #adb5bd;
+    --input-group-bg: #f8f9fa;
+    --modal-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-body: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --bg-card: #1f1f2e;
+    --text-main: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: #3f3f4e;
+    --input-bg: #2d2d3d;
+    --input-text: #ffffff;
+    --input-placeholder: #6c757d;
+    --input-group-bg: #3a3a4a;
+    --modal-bg: #1f1f2e;
+}
+
+/* Diseño Minimalista y Profesional */
+body {
+    background: var(--bg-body);
+    font-family: Arial, sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.contenedor-principal {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.tarjeta-minimalista {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 1100px;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.encabezado-tarjeta {
+    border-bottom: 1px solid var(--border-color);
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+/* Switch de Modo Oscuro */
+.switch-modo-oscuro {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cuerpo-tarjeta {
+    padding: 2.5rem;
+}
+
+.seccion-titulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #0d6efd;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.form-label.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.form-control {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--border-color);
+}
+
+.form-control::placeholder {
+    color: var(--input-placeholder);
+}
+
+.form-control:focus {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    box-shadow: none;
+    border-color: #0d6efd;
+}
+
+.input-group-text {
+    background-color: var(--input-group-bg);
+    border-color: var(--border-color);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    color: var(--text-main);
+}
+
+.modal-header {
+    background-color: var(--modal-bg) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.bg-light {
+    background-color: var(--input-bg) !important;
+}
+
+.border-start {
+    border-color: var(--border-color) !important;
+}
+
+.contenedor-notas {
+    max-height: 450px;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Scrollbar personalizado para el contenedor de notas */
+.contenedor-notas::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contenedor-notas::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.contenedor-notas::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
