@@ -1,0 +1,138 @@
+/* Estética "Old Money": Cremas sutiles, azules marinos y bordes limpios */
+:root {
+    --om-bg: #fdfaf5;
+    --om-header-text: #1a2a40;
+    --om-body-text: #2f3640;
+    --om-accent: #c5a059;
+    --om-border: #dcdde1;
+    --om-card-bg: #ffffff;
+    --om-card-header-bg: #1a2a40;
+    --om-card-header-text: #fdfaf5;
+    --om-badge-bg: #c5a059;
+    --om-badge-text: #ffffff;
+    --om-table-header-bg: #f8f9fa;
+    --om-table-header-text: #212529;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+    --om-bg: #121212;
+    --om-header-text: #c5a059;
+    --om-body-text: #e0e0e0;
+    --om-accent: #c5a059;
+    --om-border: #333333;
+    --om-card-bg: #1e1e1e;
+    --om-card-header-bg: #2c2c2c;
+    --om-card-header-text: #c5a059;
+    --om-badge-bg: #c5a059;
+    --om-badge-text: #121212;
+    --om-table-header-bg: #2c2c2c;
+    --om-table-header-text: #c5a059;
+}
+
+body {
+    background-color: var(--om-bg);
+    color: var(--om-body-text);
+    font-family: 'Georgia', serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-title {
+    color: var(--om-header-text);
+    border-bottom: 2px solid var(--om-accent);
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: var(--om-card-bg) !important;
+    border: 1px solid var(--om-border);
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.card-body {
+    background-color: var(--om-card-bg) !important;
+}
+
+.card-body, 
+.card-body p, 
+.card-body div, 
+.card-body span, 
+.card-body strong, 
+.card-body b, 
+.card-body li {
+    color: var(--om-body-text) !important;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: var(--om-card-header-bg) !important;
+    color: var(--om-card-header-text) !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: none;
+    border-radius: 0 !important;
+}
+
+.list-group-item {
+    background-color: var(--om-card-bg) !important;
+    border-color: var(--om-border);
+    color: var(--om-body-text);
+}
+
+.table {
+    background-color: var(--om-card-bg) !important;
+    color: var(--om-body-text) !important;
+    border-color: var(--om-border);
+}
+
+.table th, .table td {
+    background-color: var(--om-card-bg) !important;
+    color: var(--om-body-text) !important;
+}
+
+.table th, .table td {
+    color: var(--om-body-text) !important;
+}
+
+.table thead th {
+    background-color: var(--om-table-header-bg) !important;
+    color: var(--om-table-header-text) !important;
+    border-bottom: 2px solid var(--om-accent);
+}
+
+.badge-om {
+    background-color: var(--om-badge-bg);
+    color: var(--om-badge-text) !important;
+}
+
+/* Fix for custom badges in Exercise 3 */
+.badge.border {
+    border-color: var(--om-accent) !important;
+    color: var(--om-body-text) !important;
+    background-color: transparent;
+}
+
+.badge-om {
+    background-color: var(--om-gold);
+    color: white;
+}
+
+#loading-spinner {
+    color: var(--om-navy);
+}
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--om-border);
+    color: var(--om-navy);
+    font-style: italic;
+}

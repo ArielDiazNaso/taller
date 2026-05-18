@@ -20,8 +20,8 @@ async function loadEjercicios() {
 
         // Renderizar Ejercicio 1
         document.getElementById('content-ex1').innerHTML = `
-            <p class="card-text"><strong>Saludo:</strong> ${data.ex1.saludo}</p>
-            <p class="card-text"><strong>Despedida:</strong> ${data.ex1.despido}</p>
+            <p><strong>Línea 1:</strong> ${data.ex1.linea1}</p>
+            <p><strong>Línea 2:</strong> ${data.ex1.linea2}</p>
         `;
 
         // Renderizar Ejercicio 2
@@ -46,18 +46,18 @@ async function loadEjercicios() {
         document.getElementById('content-ex3').innerHTML = `
             <p class="mb-2">Resultados procesados mediante funciones internas:</p>
             <div class="d-flex flex-wrap gap-2">
-                <span class="badge border text-dark">Suma: ${data.ex3.suma}</span>
-                <span class="badge border text-dark">Resta: ${data.ex3.resta}</span>
-                <span class="badge border text-dark">Mult: ${data.ex3.multiplicacion}</span>
-                <span class="badge border text-dark">Div: ${data.ex3.division}</span>
+                <span class="badge border">Suma: ${data.ex3.suma}</span>
+                <span class="badge border">Resta: ${data.ex3.resta}</span>
+                <span class="badge border">Mult: ${data.ex3.multiplicacion}</span>
+                <span class="badge border">Div: ${data.ex3.division}</span>
             </div>
         `;
 
-        // Renderizar Ejercicio 4 (Especial: Tabla de resultados)
+        // Renderizar Ejercicio 4 (Tabla de resultados)
         const ex4Data = data.ex4;
         document.getElementById('content-ex4').innerHTML = `
-            <table class="table table-sm table-hover mt-2">
-                <thead class="table-light">
+            <table class="table table-sm table-hover mt-2 mb-0">
+                <thead>
                     <tr>
                         <th>Operación</th>
                         <th class="text-end">Resultado</th>
@@ -65,20 +65,20 @@ async function loadEjercicios() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>${ex4Data.suma.operacion}</td>
-                        <td class="text-end fw-bold">${ex4Data.suma.resultado}</td>
+                        <td>Suma (5+3)</td>
+                        <td class="text-end fw-bold">${ex4Data.suma}</td>
                     </tr>
                     <tr>
-                        <td>${ex4Data.resta.operacion}</td>
-                        <td class="text-end fw-bold">${ex4Data.resta.resultado}</td>
+                        <td>Resta (8-6)</td>
+                        <td class="text-end fw-bold">${ex4Data.resta}</td>
                     </tr>
                     <tr>
-                        <td>${ex4Data.multiplicacion.operacion}</td>
-                        <td class="text-end fw-bold">${ex4Data.multiplicacion.resultado}</td>
+                        <td>Multiplicación (3*11)</td>
+                        <td class="text-end fw-bold">${ex4Data.multiplicacion}</td>
                     </tr>
                     <tr>
-                        <td>${ex4Data.division.operacion}</td>
-                        <td class="text-end fw-bold">${ex4Data.division.resultado}</td>
+                        <td>División (30/5)</td>
+                        <td class="text-end fw-bold">${ex4Data.division}</td>
                     </tr>
                 </tbody>
             </table>
@@ -97,4 +97,42 @@ async function loadEjercicios() {
 }
 
 // Iniciar carga al cargar el DOM
-document.addEventListener('DOMContentLoaded', loadEjercicios);
+document.addEventListener('DOMContentLoaded', () => {
+    loadEjercicios();
+    initTheme();
+});
+
+/**
+ * Inicializa el tema basado en la preferencia guardada o del sistema.
+ */
+function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    
+    // Recuperar tema guardado o usar 'light' por defecto
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeUI(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeUI(newTheme);
+    });
+}
+
+function updateThemeUI(theme) {
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Modo Claro';
+    } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Modo Oscuro';
+    }
+}
