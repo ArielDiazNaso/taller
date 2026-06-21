@@ -20,37 +20,84 @@ async function loadEjercicios() {
 
         // Renderizar Ejercicio 1
         document.getElementById('content-ex1').innerHTML = `
-            <p><strong>Línea 1:</strong> ${data.ex1.linea1}</p>
-            <p><strong>Línea 2:</strong> ${data.ex1.linea2}</p>
+            <table class="table table-sm table-hover mt-2 mb-0">
+                <thead>
+                    <tr>
+                        <th>Línea</th>
+                        <th>Mensaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Línea 1</td>
+                        <td class="fw-bold">${data.ex1.linea1}</td>
+                    </tr>
+                    <tr>
+                        <td>Línea 2</td>
+                        <td class="fw-bold">${data.ex1.linea2}</td>
+                    </tr>
+                </tbody>
+            </table>
         `;
 
         // Renderizar Ejercicio 2
         document.getElementById('content-ex2').innerHTML = `
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Suma (4+5) <span class="badge badge-om rounded-pill">${data.ex2.suma}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Resta (3-6) <span class="badge badge-om rounded-pill">${data.ex2.resta}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Multiplicación (2*7) <span class="badge badge-om rounded-pill">${data.ex2.multiplicacion}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    División (20/4) <span class="badge badge-om rounded-pill">${data.ex2.division}</span>
-                </li>
-            </ul>
+            <table class="table table-sm table-hover mt-2 mb-0">
+                <thead>
+                    <tr>
+                        <th>Operación</th>
+                        <th class="text-end">Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Suma (4+5)</td>
+                        <td class="text-end fw-bold">${data.ex2.suma}</td>
+                    </tr>
+                    <tr>
+                        <td>Resta (3-6)</td>
+                        <td class="text-end fw-bold">${data.ex2.resta}</td>
+                    </tr>
+                    <tr>
+                        <td>Multiplicación (2*7)</td>
+                        <td class="text-end fw-bold">${data.ex2.multiplicacion}</td>
+                    </tr>
+                    <tr>
+                        <td>División (20/4)</td>
+                        <td class="text-end fw-bold">${data.ex2.division}</td>
+                    </tr>
+                </tbody>
+            </table>
         `;
 
         // Renderizar Ejercicio 3
         document.getElementById('content-ex3').innerHTML = `
-            <p class="mb-2">Resultados procesados mediante funciones internas:</p>
-            <div class="d-flex flex-wrap gap-2">
-                <span class="badge border">Suma: ${data.ex3.suma}</span>
-                <span class="badge border">Resta: ${data.ex3.resta}</span>
-                <span class="badge border">Mult: ${data.ex3.multiplicacion}</span>
-                <span class="badge border">Div: ${data.ex3.division}</span>
-            </div>
+            <table class="table table-sm table-hover mt-2 mb-0">
+                <thead>
+                    <tr>
+                        <th>Operación (mediante funciones)</th>
+                        <th class="text-end">Resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Suma (4+5)</td>
+                        <td class="text-end fw-bold">${data.ex3.suma}</td>
+                    </tr>
+                    <tr>
+                        <td>Resta (3-6)</td>
+                        <td class="text-end fw-bold">${data.ex3.resta}</td>
+                    </tr>
+                    <tr>
+                        <td>Multiplicación (2*7)</td>
+                        <td class="text-end fw-bold">${data.ex3.multiplicacion}</td>
+                    </tr>
+                    <tr>
+                        <td>División (20/4)</td>
+                        <td class="text-end fw-bold">${data.ex3.division}</td>
+                    </tr>
+                </tbody>
+            </table>
         `;
 
         // Renderizar Ejercicio 4 (Tabla de resultados)

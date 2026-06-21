@@ -1,0 +1,317 @@
+/* Estilos Generales */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica', Arial, sans-serif; 
+    margin: 0; 
+    background-color: #f4f4f4; 
+}
+
+a {
+    text-decoration: none;   
+    color: inherit;         
+    cursor: pointer;         
+}     
+
+/* Ajuste de la Navbar */
+.navbar {
+    display: flex;
+    align-items: center; 
+    background: #fff;
+    border-bottom: 3px solid #e11b22;
+    padding: 10px 5%;
+    flex-wrap: wrap;
+}
+
+/*suscripción  */
+.boton-suscribirse {
+    margin-left: auto; 
+    background-color: #e11b22;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.logo { 
+    font-weight: bold; 
+    color: #e11b22; 
+    font-size: 24px; 
+}
+
+/* Contenedor Principal (Grid) */
+.container { 
+    max-width: 1200px; 
+    margin: 20px auto; 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 20px; 
+    padding: 0 15px; 
+}
+
+/* Noticia Principal (Izquierda) */
+.main-story { 
+    background: white; 
+    padding: 0; 
+    border-bottom: 3px solid #ddd; 
+}
+
+.main-story img { 
+    width: 100%; 
+    max-height: 500px;
+    object-fit: cover; 
+}
+
+.content-padding { 
+    padding: 20px; 
+}
+
+.category-tag {
+    color: #e11b22; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    font-size: 14px; 
+}
+
+.main-story h1 { 
+    font-size: 36px; 
+    margin: 10px 0; 
+    line-height: 1.1; 
+}
+
+/* Columna Derecha */
+.side-column { 
+    display: flex; 
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.side-story { 
+    background: white; 
+    display: flex; 
+    flex-direction: column; 
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 10px; 
+}
+
+.side-story img { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+}
+
+/* Noticia Pequeña (Horizontal) */
+.mini-story { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+    background: white; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 10px; 
+    padding: 10px;
+    align-items: center;
+}
+
+/* Contenedor para centrar el anuncio */
+.contenedor-anuncio {
+    width: 90%;
+    max-width: 600px;    
+    margin: 20px auto;   
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Estilo de la imagen del anuncio */
+.imagen-anuncio {
+    width: 100%;          
+    max-width: 100%;
+    max-height: 180px;
+    height: auto;         
+    border: 1px solid #cccccc; 
+    display: block;       
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* El texto chiquito de "Publicidad" */
+.texto-anuncio {
+    font-size: 10px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* Contenedor del Tablero */
+.tablero-noticias {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;                             
+}
+
+.tarjeta-noticia {
+    background-color: #ffffff;
+    border-bottom: 3px solid #ddd;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tarjeta-noticia img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; 
+    display: block;
+    background-color: #e0e0e0;
+}
+
+img {
+    background-color: #e0e0e0;
+}
+
+.tarjeta-info {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.tarjeta-info h4 {
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.mini-story img { 
+    width: 100%; 
+    height: 120px; 
+    object-fit: cover; 
+}
+
+/* Estilos para páginas de noticias individuales */
+.noticia-individual {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+    background: white;
+}
+
+.noticia-individual img {
+    width: 100%;
+    height: auto;
+}
+
+.noticia-individual h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.noticia-individual p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.volver {
+    display: inline-block;
+    background-color: #e11b22;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 1024px) {
+    .tablero-noticias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .main-story h1 {
+        font-size: 28px;
+    }
+
+    .main-story img {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .main-story h1 {
+        font-size: 24px;
+    }
+    
+    .main-story img {
+        max-height: 350px;
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .boton-suscribirse {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .tablero-noticias {
+        grid-template-columns: 1fr;
+    }
+    
+    .mini-story {
+        grid-template-columns: 1fr;
+    }
+    
+    .mini-story img {
+        height: 180px;
+    }
+    
+    .contenedor-anuncio {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 10px;
+    }
+    
+    .logo {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    
+    .boton-suscribirse {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .main-story h1 {
+        font-size: 20px;
+    }
+    
+    .main-story img {
+        max-height: 250px;
+    }
+    
+    .content-padding {
+        padding: 15px;
+    }
+    
+    .noticia-individual h1 {
+        font-size: 24px;
+    }
+}

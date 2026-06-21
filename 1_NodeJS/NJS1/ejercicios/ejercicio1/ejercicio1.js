@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url';
+
 export function obtenerResultado() {
     return {
         linea1: "Hola mundo desde Node.js",
@@ -5,7 +7,7 @@ export function obtenerResultado() {
     };
 }
 
-if (import.meta.url === `file:///${process.argv[1].replace(/\\/g, '/')}`) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const res = obtenerResultado();
     console.log(res.linea1);
     console.log(res.linea2);
