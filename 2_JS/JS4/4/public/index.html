@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Directory</title>
+    <!-- Import Bootstrap 5 CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Import custom styles -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Header with title and theme toggle -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Student Directory</h1>
+            <button id="themeToggle" class="btn btn-outline-secondary">
+                <span id="themeIcon">🌙</span> Dark Mode
+            </button>
+        </div>
+
+        <!-- Container where student cards will be injected -->
+        <div id="alumnosContainer" class="row g-3"></div>
+    </div>
+
+    <!-- Import Bootstrap 5 JS bundle via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Import atomized JavaScript modules -->
+    <script src="js/theme.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <!-- Initialize the application -->
+    <script>
+        async function initApp() {
+            try {
+                const alumnos = await fetchAlumnos();
+                renderAlumnos(alumnos);
+            } catch (error) {
+                showError('Failed to load students. Please try again later.');
+            }
+        }
+
+        initApp();
+    </script>
+</body>
+</html>

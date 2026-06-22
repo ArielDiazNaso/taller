@@ -1,0 +1,12 @@
+{
+  "name": "user-filter-app",
+  "version": "1.0.0",
+  "description": "A simple user filtering app with dark/light mode",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

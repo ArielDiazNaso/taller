@@ -4,6 +4,14 @@
 
 :root {
     --primary-red: #e11b22;
+    --bg-light: #f4f4f4;
+    --bg-light-card: #ffffff;
+    --text-light: #212529;
+    --text-light-muted: #6c757d;
+    --bg-dark: #121212;
+    --bg-dark-card: #1e1e1e;
+    --text-dark: #e0e0e0;
+    --text-dark-muted: #9e9e9e;
 }
 
 html {
@@ -12,8 +20,86 @@ html {
 
 body {
     font-family: 'Helvetica', Arial, sans-serif; 
-    background-color: #f4f4f4; 
-    padding-top: 10px; /* Space for sticky navbar if needed */
+    background-color: var(--bg-light); 
+    color: var(--text-light);
+    padding-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode .navbar {
+    background-color: var(--bg-dark-card) !important;
+    border-bottom-color: var(--primary-red);
+}
+
+body.dark-mode .nav-link {
+    color: var(--text-dark) !important;
+}
+
+body.dark-mode .text-decoration-none.text-dark {
+    color: var(--text-dark) !important;
+}
+
+body.dark-mode .text-muted {
+    color: var(--text-dark-muted) !important;
+}
+
+body.dark-mode .bg-white {
+    background-color: var(--bg-dark-card) !important;
+}
+
+body.dark-mode .border {
+    border-color: #333 !important;
+}
+
+body.dark-mode footer {
+    background-color: var(--bg-dark-card) !important;
+    border-top-color: var(--primary-red);
+    color: var(--text-dark);
+}
+
+body.dark-mode footer a {
+    color: var(--text-dark) !important;
+}
+
+body.dark-mode .form-check-label {
+    color: var(--text-dark);
+}
+
+body.dark-mode .card {
+    background-color: var(--bg-dark-card) !important;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: var(--text-dark);
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+    background-color: #333;
+    border-color: var(--primary-red);
+    color: var(--text-dark);
+}
+
+body.dark-mode .form-label {
+    color: var(--text-dark);
+}
+
+body.dark-mode .form-floating > label {
+    color: var(--text-dark-muted);
+}
+
+body.dark-mode .form-floating > .form-control:focus ~ label,
+body.dark-mode .form-floating > .form-control:not(:placeholder-shown) ~ label,
+body.dark-mode .form-floating > .form-select:focus ~ label {
+    color: var(--primary-red);
 }
 
 /* Custom Link Hover Effects */
