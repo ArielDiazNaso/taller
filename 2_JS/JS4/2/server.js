@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = 30003;
 
 // Middleware para parsear peticiones con cuerpo JSON
 app.use(express.json());

@@ -3,7 +3,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 30000;
 
 // Servimos archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
