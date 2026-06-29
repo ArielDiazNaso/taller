@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Alumnos</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #dee2e6;
+            --accent-color: #4361ee;
+            --accent-hover: #3a56d4;
+            --success-color: #38b000;
+            --danger-color: #dc2f02;
+            --warning-color: #ff9e00;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--accent-color), #7209b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-container {
+            background-color: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-container h2 {
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background-color: var(--text-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-edit {
+            background-color: var(--warning-color);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+        }
+
+        .btn-edit:hover {
+            background-color: #e08900;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+        }
+
+        .btn-delete:hover {
+            background-color: #b82601;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        .table-container {
+            background-color: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .table-container h2 {
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 18px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-secondary);
+        }
+
+        tr:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .message {
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .success {
+            background-color: rgba(56, 176, 0, 0.15);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+            display: block;
+        }
+
+        .error {
+            background-color: rgba(220, 47, 2, 0.15);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+            display: block;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Gestión de Alumnos</h1>
+        <button id="themeToggle" class="theme-toggle">
+            <span id="themeIcon">🌙</span>
+            <span id="themeText">Modo Oscuro</span>
+        </button>
+    </div>
+    
+    <div id="message" class="message"></div>
+
+    <div class="main-content">
+        <div class="form-container">
+            <h2 id="formTitle">Agregar Alumno</h2>
+            <form id="alumnoForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" name="edad" min="1" max="120" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" id="submitBtn" class="btn btn-primary">Agregar alumno</button>
+                    <button type="button" id="cancelBtn" class="btn btn-secondary" style="display: none;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-container">
+            <h2>Lista de Alumnos</h2>
+            <div class="table-wrapper">
+                <table id="alumnosTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alumnosBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h2>¿Estás seguro?</h2>
+            <p style="margin-bottom: 25px; color: var(--text-secondary);">Esta acción no se puede deshacer.</p>
+            <div class="button-group">
+                <button id="confirmDelete" class="btn btn-delete">Eliminar</button>
+                <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================================
+        // VARIABLES GLOBALES Y CONSTANTES
+        // ================================
+        
+        // URL base de la API REST para manejar alumnos
+        const API_URL = '/api/alumnos';
+        
+        // Referencias a elementos del DOM (Document Object Model)
+        const form = document.getElementById('alumnoForm');
+        const alumnosBody = document.getElementById('alumnosBody');
+        const messageDiv = document.getElementById('message');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const deleteModal = document.getElementById('deleteModal');
+        const confirmDelete = document.getElementById('confirmDelete');
+        const cancelDelete = document.getElementById('cancelDelete');
+
+        // Variables de estado para seguimiento
+        let editingId = null; // Almacena el ID del alumno que estamos editando
+        let deletingId = null; // Almacena el ID del alumno que queremos eliminar
+
+
+        // ================================
+        // FUNCIONES AUXILIARES
+        // ================================
+
+        // Muestra un mensaje de éxito o error en la interfaz
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`; // Asigna la clase CSS (success/error)
+            // Oculta el mensaje automáticamente después de 4 segundos
+            setTimeout(() => {
+                messageDiv.className = 'message';
+            }, 4000);
+        }
+
+        // Alterna entre modo claro y modo oscuro
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode'); // Agrega o quita la clase 'dark-mode'
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            if (isDark) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Modo Claro';
+                localStorage.setItem('theme', 'dark'); // Guarda la preferencia en el navegador
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Modo Oscuro';
+                localStorage.setItem('theme', 'light'); // Guarda la preferencia en el navegador
+            }
+        }
+
+        // Carga la preferencia de tema guardada anteriormente
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Modo Claro';
+            }
+        }
+
+        // Restablece el formulario a su estado inicial
+        function resetForm() {
+            form.reset(); // Limpia los campos del formulario
+            editingId = null;
+            formTitle.textContent = 'Agregar Alumno';
+            submitBtn.textContent = 'Agregar alumno';
+            cancelBtn.style.display = 'none';
+        }
+
+        // Carga los datos de un alumno en el formulario para editarlo
+        function cargarAlumnoEnFormulario(alumno) {
+            document.getElementById('nombre').value = alumno.nombre;
+            document.getElementById('apellido').value = alumno.apellido;
+            document.getElementById('edad').value = alumno.edad;
+            editingId = alumno.id;
+            formTitle.textContent = 'Modificar Alumno';
+            submitBtn.textContent = 'Guardar cambios';
+            cancelBtn.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplaza al principio de la página
+        }
+
+
+        // ================================
+        // FUNCIONES PRINCIPALES
+        // ================================
+
+        // Obtiene la lista de alumnos desde la API y los muestra en la tabla
+        async function cargarAlumnos() {
+            try {
+                const response = await fetch(API_URL); // Petición GET a la API
+                const alumnos = await response.json(); // Convierte la respuesta a JSON
+                alumnosBody.innerHTML = ''; // Limpia la tabla antes de agregar los nuevos datos
+
+                // Recorre cada alumno y crea una fila de la tabla
+                alumnos.forEach(alumno => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${alumno.id}</td>
+                        <td>${alumno.nombre}</td>
+                        <td>${alumno.apellido}</td>
+                        <td>${alumno.edad}</td>
+                        <td>
+                            <button class="btn btn-edit" data-id="${alumno.id}">✏️ Editar</button>
+                            <button class="btn btn-delete" data-id="${alumno.id}">🗑️ Eliminar</button>
+                        </td>
+                    `;
+                    
+                    // Agrega el evento de clic al botón de editar
+                    const editBtn = row.querySelector('.btn-edit');
+                    editBtn.addEventListener('click', () => editarAlumno(alumno.id));
+                    
+                    // Agrega el evento de clic al botón de eliminar
+                    const deleteBtn = row.querySelector('.btn-delete');
+                    deleteBtn.addEventListener('click', () => mostrarConfirmacionEliminar(alumno.id));
+                    
+                    alumnosBody.appendChild(row); // Agrega la fila a la tabla
+                });
+            } catch (error) {
+                showMessage('Error al cargar los alumnos', 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        // Agrega un nuevo alumno o actualiza uno existente
+        async function agregarOActualizarAlumno(event) {
+            event.preventDefault(); // Evita que se recargue la página al enviar el formulario
+
+            // Obtiene los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const edad = parseInt(document.getElementById('edad').value);
+
+            try {
+                // Determina la URL y el método HTTP según si estamos editando o agregando
+                const url = editingId ? `${API_URL}/${editingId}` : API_URL;
+                const method = editingId ? 'PUT' : 'POST';
+
+                console.log('Request URL:', url);
+                console.log('Request method:', method);
+                console.log('Request data:', { nombre, apellido, edad });
+
+                // Envía la petición a la API
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nombre, apellido, edad })
+                });
+
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Response data:', result);
+
+                if (response.ok) {
+                    // Muestra mensaje de éxito
+                    const mensaje = editingId ? 'Alumno actualizado exitosamente!' : 'Alumno agregado exitosamente!';
+                    showMessage(mensaje, 'success');
+                    resetForm(); // Restablece el formulario
+                    cargarAlumnos(); // Actualiza la lista de alumnos
+                } else {
+                    showMessage(result.error || 'Error al procesar la solicitud', 'error');
+                }
+            } catch (error) {
+                console.error('Error details:', error);
+                showMessage(`Error de conexión: ${error.message}`, 'error');
+            }
+        }
+
+        // Obtiene los datos de un alumno desde la API para editarlo
+        async function editarAlumno(id) {
+            try {
+                const response = await fetch(`${API_URL}/${id}`);
+                const alumno = await response.json();
+                if (response.ok) {
+                    cargarAlumnoEnFormulario(alumno); // Carga los datos en el formulario
+                } else {
+                    showMessage('Error al cargar el alumno', 'error');
+                }
+            } catch (error) {
+                showMessage('Error de conexión', 'error');
+                console.error('Error:', error);
+            }
+        }
+
+        // Muestra el modal de confirmación para eliminar
+        function mostrarConfirmacionEliminar(id) {
+            deletingId = id;
+            deleteModal.classList.add('active');
+        }
+
+        // Elimina un alumno de la base de datos
+        async function eliminarAlumno() {
+            try {
+                const response = await fetch(`${API_URL}/${deletingId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    showMessage('Alumno eliminado exitosamente!', 'success');
+                    deleteModal.classList.remove('active');
+                    cargarAlumnos(); // Actualiza la lista de alumnos
+                } else {
+                    showMessage('Error al eliminar el alumno', 'error');
+                }
+            } catch (error) {
+                showMessage('Error de conexión', 'error');
+                console.error('Error:', error);
+            }
+        }
+
+
+        // ================================
+        // CONFIGURACIÓN DE EVENTOS
+        // ================================
+        themeToggle.addEventListener('click', toggleTheme);
+        form.addEventListener('submit', agregarOActualizarAlumno);
+        cancelBtn.addEventListener('click', resetForm);
+        confirmDelete.addEventListener('click', eliminarAlumno);
+        cancelDelete.addEventListener('click', () => deleteModal.classList.remove('active'));
+        deleteModal.addEventListener('click', (e) => {
+            if (e.target === deleteModal) deleteModal.classList.remove('active');
+        });
+
+
+        // ================================
+        // INICIALIZACIÓN
+        // ================================
+        loadTheme(); // Carga el tema al cargar la página
+        cargarAlumnos(); // Carga la lista de alumnos al cargar la página
+    </script>
+</body>
+</html>
