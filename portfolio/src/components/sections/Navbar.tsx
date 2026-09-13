@@ -35,10 +35,10 @@ export function Navbar({ activeSection, onActiveChange }: NavbarProps = {}) {
 
   const currentActive = activeSection ?? internalActive;
 
-  const firstName = profile.firstName ?? "Alejandro";
-  const lastName = profile.lastName ?? "Martínez";
-  const fullName = `${firstName} ${lastName.split(" ")[0] ?? "Martínez"}`;
-  const brandInitials = "AM";
+  const firstName = profile.firstName ?? "Ariel";
+  const lastName = profile.lastName ?? "Díaz";
+  const fullName = `${firstName} ${lastName.split(" ")[0] ?? "Díaz"}`;
+  const brandInitials = "AD";
 
   useEffect(() => {
     setMounted(true);
