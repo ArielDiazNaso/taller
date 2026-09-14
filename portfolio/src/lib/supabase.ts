@@ -1,14 +1,28 @@
 ﻿import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? "";
-const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? "";
+let rawUrl = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? "").trim();
+if (rawUrl && !rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
+  rawUrl = `https://${rawUrl}`;
+}
+// Eliminar slash final si existe
+rawUrl = rawUrl.replace(/\/+$/, "");
+
+const supabaseUrl = rawUrl;
+const supabaseAnonKey = ((import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? "").trim();
 
 export const isSupabaseConfigured: boolean = Boolean(
   supabaseUrl &&
     supabaseAnonKey &&
-    supabaseUrl.startsWith("http") &&
-    !supabaseUrl.includes("placeholder")
+    supabaseUrl.includes("supabase.co")
 );
+
+if (typeof window !== "undefined") {
+  console.log("[Supabase Status]", {
+    configured: isSupabaseConfigured,
+    urlPresent: Boolean(supabaseUrl),
+    keyPresent: Boolean(supabaseAnonKey),
+  });
+}
 
 export const supabase = isSupabaseConfigured
   ? createClient(supabaseUrl, supabaseAnonKey)

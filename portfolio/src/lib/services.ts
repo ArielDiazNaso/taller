@@ -28,22 +28,6 @@ export async function fetchPortfolioData(): Promise<
   ApiResponse<PortfolioData>
 > {
   try {
-    // Si Supabase está conectado y configurado con credenciales en Vercel
-    if (isSupabaseConfigured && supabase) {
-      try {
-        const { data: dbProjects } = await supabase
-          .from("projects")
-          .select("*")
-          .order("project_order", { ascending: true });
-
-        if (dbProjects && dbProjects.length > 0) {
-          console.info("Información de portfolio cargada exitosamente desde Base de Datos Supabase (PostgreSQL).");
-        }
-      } catch (err) {
-        console.warn("Supabase query fallback a datos estructurados:", err);
-      }
-    }
-
     await randomDelay();
     return {
       success: true,
@@ -81,10 +65,14 @@ export async function submitContactMessage(
       return { success: false, error: "Formato de email inválido." };
     }
 
+    const newId = generateId("msg");
+    const createdAt = new Date().toISOString();
+
     // Persistencia directa en Base de Datos Supabase (PostgreSQL en la nube)
     if (isSupabaseConfigured && supabase) {
+      console.log("[Supabase Contact Submit] Intentando guardar en tabla contact_messages...", sanitized);
       try {
-        const { data: dbData, error: dbError } = await supabase
+        const { error: dbError } = await supabase
           .from("contact_messages")
           .insert([
             {
@@ -92,40 +80,28 @@ export async function submitContactMessage(
               email: sanitized.email,
               message: sanitized.message,
             },
-          ])
-          .select()
-          .single();
+          ]);
 
-        if (!dbError && dbData) {
-          console.info("Mensaje guardado exitosamente en la tabla contact_messages de la base de datos.");
-          return {
-            success: true,
-            data: {
-              id: String(dbData.id),
-              name: dbData.name as string,
-              email: dbData.email as string,
-              message: dbData.message as string,
-              createdAt: (dbData.created_at as string) ?? new Date().toISOString(),
-              read: false,
-              replied: false,
-            },
-          };
-        } else if (dbError) {
-          console.warn("Error al insertar en Supabase (usando fallback seguro):", dbError);
+        if (dbError) {
+          console.error("[Supabase Insert Error]:", dbError);
+        } else {
+          console.log("[Supabase Insert Success]: Mensaje guardado en PostgreSQL.");
         }
       } catch (dbErr) {
-        console.warn("Fallo de conexión con la base de datos:", dbErr);
+        console.error("[Supabase Exception]:", dbErr);
       }
+    } else {
+      console.warn("[Supabase] No está configurado o faltan variables de entorno en Vercel.");
     }
 
     await randomDelay();
 
     const persisted: ContactMessage = {
-      id: generateId("msg"),
+      id: newId,
       name: sanitized.name,
       email: sanitized.email,
       message: sanitized.message,
-      createdAt: new Date().toISOString(),
+      createdAt,
       read: false,
       replied: false,
     };
