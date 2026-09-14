@@ -4,8 +4,14 @@ let rawUrl = ((import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? "").t
 if (rawUrl && !rawUrl.startsWith("http://") && !rawUrl.startsWith("https://")) {
   rawUrl = `https://${rawUrl}`;
 }
-// Eliminar slash final si existe
-rawUrl = rawUrl.replace(/\/+$/, "");
+
+// Extraer únicamente el origen base (ej. https://xxxx.supabase.co) sin rutas como /rest/v1
+const originMatch = rawUrl.match(/^https?:\/\/[^/]+/i);
+if (originMatch) {
+  rawUrl = originMatch[0];
+} else {
+  rawUrl = rawUrl.replace(/\/+$/, "");
+}
 
 const supabaseUrl = rawUrl;
 const supabaseAnonKey = ((import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? "").trim();
@@ -19,7 +25,7 @@ export const isSupabaseConfigured: boolean = Boolean(
 if (typeof window !== "undefined") {
   console.log("[Supabase Status]", {
     configured: isSupabaseConfigured,
-    urlPresent: Boolean(supabaseUrl),
+    url: supabaseUrl,
     keyPresent: Boolean(supabaseAnonKey),
   });
 }
