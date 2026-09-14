@@ -1,4 +1,4 @@
-﻿import {
+import {
   SkillCategory,
   SKILL_PROFICIENCY,
   ExperienceType,
@@ -18,7 +18,7 @@ export const profile: UserProfile = {
     "Desarrollo de aplicaciones web interactivas, APIs RESTful y arquitecturas de servidor con persistencia en bases de datos.",
   bio: "Estudiante y desarrollador web enfocado en el stack JavaScript / Node.js. Con experiencia en la construcción de servidores HTTP modulares, desarrollo de APIs REST bajo arquitectura MVC, persistencia relacional en MySQL y desarrollo de interfaces modernas en React.",
   avatarUrl:
-    "https://images.unsplash.com/photo-1534972195531-a756b1140f6c?w=400&q=80&auto=format&fit=crop",
+    "/avatar.png",
   email: "ariel.diaz.dev@gmail.com",
   phone: "+54 9 11 0000-0000",
   location: "Buenos Aires, Argentina",
