@@ -23,7 +23,7 @@ const socialIconMap: Record<string, LucideIcon> = {
 export const Footer: FC<FooterProps> = ({
   year,
   socials,
-  name = "Alejandro Martínez Vázquez",
+  name = "Ariel Díaz",
   onOpenAdmin,
 }) => {
   const currentYear = year ?? new Date().getFullYear();

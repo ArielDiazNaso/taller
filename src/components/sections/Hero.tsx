@@ -66,10 +66,10 @@ export function Hero({ profile: propProfile, skills: propSkills }: HeroProps = {
   const resolvedProfile: UserProfile = propProfile ?? profile;
   const resolvedSkills: readonly Skill[] = propSkills ?? skills;
 
-  const firstName = resolvedProfile.firstName ?? "Alejandro";
-  const lastName = resolvedProfile.lastName?.split(" ")[0] ?? "Martínez";
+  const firstName = resolvedProfile.firstName ?? "Ariel";
+  const lastName = resolvedProfile.lastName?.split(" ")[0] ?? "Díaz";
   const title =
-    resolvedProfile.title ?? "Senior Principal Software Architect";
+    resolvedProfile.title ?? "Desarrollador Full Stack & Software Engineer";
   const tagline =
     resolvedProfile.tagline ??
     "Diseño sistemas escalables y construyo interfaces que convierten ideas en productos digitales de alta calidad.";
