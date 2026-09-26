@@ -11,18 +11,18 @@ import {
 
 export const profile: UserProfile = {
   id: "user_01",
-  firstName: "Alejandro",
-  lastName: "Martínez Vázquez",
-  title: "Senior Principal Software Architect & Lead Frontend Engineer",
+  firstName: "Ariel",
+  lastName: "Díaz",
+  title: "Desarrollador Full Stack & Software Engineer",
   tagline:
-    "Diseño sistemas escalables y construyo interfaces que convierten ideas en productos digitales de alta calidad.",
-  bio: "Arquitecto de Software con más de 10 años de experiencia liderando equipos multidisciplinarios y diseñando soluciones enterprise. Especialista en ecosistemas React/Next.js, arquitecturas limpias y sistemas distribuidos. Apasionado por el clean code, la accesibilidad y la innovación tecnológica.",
+    "Diseño sistemas escalables y construyo interfaces modernas de alta calidad.",
+  bio: "Desarrollador enfocado en soluciones web modernas, arquitecturas escalables y experiencias de usuario fluidas. Especializado en React, TypeScript y backend moderno.",
   avatarUrl:
     "/avatar.png",
-  email: "alejandro.martinez@portfolio.dev",
-  phone: "+34 600 123 456",
-  location: "Madrid, España",
-  resumeUrl: "/cv-alejandro-martinez.pdf",
+  email: "arieldiaz@portfolio.dev",
+  phone: null,
+  location: "Argentina",
+  resumeUrl: null,
   socials: [
     {
       id: "social_01",
