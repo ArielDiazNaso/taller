@@ -74,7 +74,7 @@ export function Hero({ profile: propProfile, skills: propSkills }: HeroProps = {
     resolvedProfile.tagline ??
     "Diseño sistemas escalables y construyo interfaces que convierten ideas en productos digitales de alta calidad.";
   const avatarUrl =
-    resolvedProfile.avatarUrl ?? "/avatar.png";
+    resolvedProfile.avatarUrl ?? "/ariel.jpg";
 
   const topSkills: readonly Skill[] = useMemo(() => {
     const sorted = [...resolvedSkills].sort((a, b) => {
@@ -290,14 +290,14 @@ export function Hero({ profile: propProfile, skills: propSkills }: HeroProps = {
                 >
                   <div className="flex items-center gap-2 sm:gap-3">
                     <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-primary-foreground font-black text-sm shadow-inner">
-                      10+
+                      2+
                     </div>
                     <div className="flex flex-col leading-none">
                       <span className="text-xs sm:text-sm font-bold text-foreground">
                         Años exp.
                       </span>
                       <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">
-                        Arquitectura & Liderazgo
+                        Desarrollo Web & Proyectos
                       </span>
                     </div>
                   </div>

@@ -18,42 +18,30 @@ export const profile: UserProfile = {
     "Diseño sistemas escalables y construyo interfaces modernas de alta calidad.",
   bio: "Desarrollador enfocado en soluciones web modernas, arquitecturas escalables y experiencias de usuario fluidas. Especializado en React, TypeScript y backend moderno.",
   avatarUrl:
-    "/avatar.png",
+    "/ariel.jpg",
   email: "arieldiaz@portfolio.dev",
   phone: null,
-  location: "Argentina",
+  location: "Buenos Aires, Argentina",
   resumeUrl: null,
   socials: [
     {
       id: "social_01",
       platform: "GitHub",
-      url: "https://github.com/alejandromartinez",
+      url: "https://github.com/ArielDiazNaso",
       iconKey: "github",
     },
     {
       id: "social_02",
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/alejandromartinez",
+      url: "https://linkedin.com",
       iconKey: "linkedin",
-    },
-    {
-      id: "social_03",
-      platform: "Twitter/X",
-      url: "https://x.com/alejandromdev",
-      iconKey: "twitter",
-    },
-    {
-      id: "social_04",
-      platform: "Dribbble",
-      url: "https://dribbble.com/alejandromartinez",
-      iconKey: "dribbble",
     },
   ],
   highlights: [
-    "+10 años diseñando arquitecturas enterprise",
-    "Especialista en Next.js y ecosistema React 18/19",
-    "Mentor técnico en programas de aceleración",
-    "Speaker en conferencias internacionales de frontend",
+    "+2 años desarrollando proyectos web modernos",
+    "Especialista en React, TypeScript y Tailwind CSS",
+    "Integración con APIs y bases de datos SQL serverless",
+    "Enfoque en diseño limpio, responsive y UX intuitiva",
   ],
 };
 
