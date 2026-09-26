@@ -74,8 +74,7 @@ export function Hero({ profile: propProfile, skills: propSkills }: HeroProps = {
     resolvedProfile.tagline ??
     "Diseño sistemas escalables y construyo interfaces que convierten ideas en productos digitales de alta calidad.";
   const avatarUrl =
-    resolvedProfile.avatarUrl ??
-    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&auto=format&fit=crop";
+    resolvedProfile.avatarUrl ?? "/avatar.png";
 
   const topSkills: readonly Skill[] = useMemo(() => {
     const sorted = [...resolvedSkills].sort((a, b) => {
