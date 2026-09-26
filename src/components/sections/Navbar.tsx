@@ -166,7 +166,7 @@ export function Navbar({ activeSection, onActiveChange }: NavbarProps = {}) {
               {firstName}
             </span>
             <span className="text-xs sm:text-sm text-muted-foreground font-medium -mt-0.5">
-              {lastName.split(" ")[0] ?? "Martínez"}
+              {lastName.split(" ")[0] ?? "Díaz"}
             </span>
           </span>
           <span className="sr-only">{fullName}</span>
