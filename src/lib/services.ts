@@ -13,6 +13,7 @@ import type {
   PortfolioData,
   UserProfile,
   ExperienceItem,
+  Project,
 } from "@/types/portfolio";
 
 const ARTIFICIAL_DELAY_MIN_MS = 350;
@@ -140,6 +141,51 @@ export async function deleteExperienceItem(
     const data = await res.json();
     if (!res.ok) {
       return { success: false, error: data.error || "Error al eliminar experiencia" };
+    }
+    return { success: true };
+  } catch (err) {
+    return { success: false, error: err instanceof Error ? err.message : "Error de conexión" };
+  }
+}
+
+export async function saveProjectItem(
+  item: Partial<Project>,
+  token: string,
+  isEdit = false
+): Promise<ApiResponse<{ id?: string }>> {
+  try {
+    const res = await fetch("/api/admin/projects", {
+      method: isEdit ? "PUT" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(item),
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return { success: false, error: data.error || "Error al guardar proyecto" };
+    }
+    return { success: true, data: { id: data.id } };
+  } catch (err) {
+    return { success: false, error: err instanceof Error ? err.message : "Error de conexión" };
+  }
+}
+
+export async function deleteProjectItem(
+  id: string,
+  token: string
+): Promise<ApiResponse<void>> {
+  try {
+    const res = await fetch(`/api/admin/projects?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return { success: false, error: data.error || "Error al eliminar proyecto" };
     }
     return { success: true };
   } catch (err) {

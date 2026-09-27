@@ -172,6 +172,8 @@ export function App() {
           onClose={() => setIsAdminOpen(false)}
           profile={data.profile}
           experience={data.experience || []}
+          projects={data.projects || []}
+          tags={data.projectTags || []}
           onDataUpdated={refetch}
         />
       )}
