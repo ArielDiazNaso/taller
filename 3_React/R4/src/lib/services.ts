@@ -63,6 +63,23 @@ export async function fetchPortfolioData(): Promise<
   }
 }
 
+async function parseResponse<T = any>(res: Response): Promise<{ ok: boolean; status: number; data?: T; error?: string }> {
+  const text = await res.text();
+  let json: any = null;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    // not JSON
+  }
+
+  if (!res.ok) {
+    const errorMsg = json?.error || (text && text.length < 200 ? text : `Error del servidor (${res.status})`);
+    return { ok: false, status: res.status, error: errorMsg };
+  }
+
+  return { ok: true, status: res.status, data: json };
+}
+
 export async function loginAdmin(password: string): Promise<ApiResponse<{ token: string }>> {
   try {
     const res = await fetch("/api/auth/login", {
@@ -70,11 +87,11 @@ export async function loginAdmin(password: string): Promise<ApiResponse<{ token:
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password }),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al autenticar" };
+    const parsed = await parseResponse<{ token?: string; error?: string }>(res);
+    if (!parsed.ok || !parsed.data?.token) {
+      return { success: false, error: parsed.error || "Error al autenticar" };
     }
-    return { success: true, data: { token: data.token } };
+    return { success: true, data: { token: parsed.data.token } };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Error de conexión" };
   }
@@ -93,9 +110,9 @@ export async function updateProfile(
       },
       body: JSON.stringify(profileData),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al actualizar perfil" };
+    const parsed = await parseResponse(res);
+    if (!parsed.ok) {
+      return { success: false, error: parsed.error || "Error al actualizar perfil" };
     }
     return { success: true };
   } catch (err) {
@@ -117,9 +134,9 @@ export async function saveExperienceItem(
       },
       body: JSON.stringify(item),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al guardar experiencia" };
+    const parsed = await parseResponse(res);
+    if (!parsed.ok) {
+      return { success: false, error: parsed.error || "Error al guardar experiencia" };
     }
     return { success: true };
   } catch (err) {
@@ -138,9 +155,9 @@ export async function deleteExperienceItem(
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al eliminar experiencia" };
+    const parsed = await parseResponse(res);
+    if (!parsed.ok) {
+      return { success: false, error: parsed.error || "Error al eliminar experiencia" };
     }
     return { success: true };
   } catch (err) {
@@ -162,11 +179,11 @@ export async function saveProjectItem(
       },
       body: JSON.stringify(item),
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al guardar proyecto" };
+    const parsed = await parseResponse<{ id?: string; error?: string }>(res);
+    if (!parsed.ok) {
+      return { success: false, error: parsed.error || "Error al guardar proyecto" };
     }
-    return { success: true, data: { id: data.id } };
+    return { success: true, data: { id: parsed.data?.id } };
   } catch (err) {
     return { success: false, error: err instanceof Error ? err.message : "Error de conexión" };
   }
@@ -183,9 +200,9 @@ export async function deleteProjectItem(
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await res.json();
-    if (!res.ok) {
-      return { success: false, error: data.error || "Error al eliminar proyecto" };
+    const parsed = await parseResponse(res);
+    if (!parsed.ok) {
+      return { success: false, error: parsed.error || "Error al eliminar proyecto" };
     }
     return { success: true };
   } catch (err) {

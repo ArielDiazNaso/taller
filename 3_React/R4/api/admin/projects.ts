@@ -3,12 +3,25 @@ import { db } from "../db.js";
 import { verifyAdminToken } from "../auth_helper.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (!verifyAdminToken(req)) {
-    return res.status(401).json({ success: false, error: "No autorizado. Inicia sesión como administrador." });
-  }
-
   try {
-    if (req.method === "POST") {
+    if (req.method === "OPTIONS") {
+      return res.status(200).end();
+    }
+
+    if (!verifyAdminToken(req)) {
+      return res.status(401).json({ success: false, error: "No autorizado. Inicia sesión como administrador." });
+    }
+
+    let body = req.body;
+    if (typeof body === "string") {
+      try {
+        body = JSON.parse(body);
+      } catch (e) {
+        console.error("Failed to parse body string:", e);
+      }
+    }
+
+    if (req.method === "POST" || req.method === "PUT") {
       const {
         id,
         title,
@@ -23,12 +36,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         endDate,
         tagIds,
         screenshots,
-      } = req.body || {};
+      } = body || {};
 
       if (!title || !shortDescription || !imageUrl) {
         return res.status(400).json({
           success: false,
-          error: "Título (nombre), detalle (descripción) e imagen son requeridos.",
+          error: "Título (nombre), detalle (descripción) e imagen de portada son requeridos.",
         });
       }
 
@@ -39,7 +52,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 id, title, shortDescription, longDescription, imageUrl,
                 demoUrl, repoUrl, featured, display_order, startDate,
                 endDate, tagIds, screenshots
-              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+              ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+              ON CONFLICT(id) DO UPDATE SET
+                title = excluded.title,
+                shortDescription = excluded.shortDescription,
+                longDescription = excluded.longDescription,
+                imageUrl = excluded.imageUrl,
+                demoUrl = excluded.demoUrl,
+                repoUrl = excluded.repoUrl,
+                featured = excluded.featured,
+                display_order = excluded.display_order,
+                startDate = excluded.startDate,
+                endDate = excluded.endDate,
+                tagIds = excluded.tagIds,
+                screenshots = excluded.screenshots`,
         args: [
           projId,
           title,
@@ -57,63 +83,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         ],
       });
 
-      return res.status(201).json({ success: true, message: "Proyecto guardado con éxito.", id: projId });
-    }
-
-    if (req.method === "PUT") {
-      const {
-        id,
-        title,
-        shortDescription,
-        longDescription,
-        imageUrl,
-        demoUrl,
-        repoUrl,
-        featured,
-        order,
-        startDate,
-        endDate,
-        tagIds,
-        screenshots,
-      } = req.body || {};
-
-      if (!id) {
-        return res.status(400).json({ success: false, error: "ID requerido para actualizar." });
-      }
-
-      await db.execute({
-        sql: `UPDATE projects SET
-                title = ?,
-                shortDescription = ?,
-                longDescription = ?,
-                imageUrl = ?,
-                demoUrl = ?,
-                repoUrl = ?,
-                featured = ?,
-                display_order = ?,
-                startDate = ?,
-                endDate = ?,
-                tagIds = ?,
-                screenshots = ?
-              WHERE id = ?`,
-        args: [
-          title || "",
-          shortDescription || "",
-          longDescription || shortDescription || "",
-          imageUrl || "",
-          demoUrl || null,
-          repoUrl || null,
-          featured ? 1 : 0,
-          order ?? 1,
-          startDate || null,
-          endDate || null,
-          typeof tagIds === "string" ? tagIds : JSON.stringify(tagIds || []),
-          typeof screenshots === "string" ? screenshots : JSON.stringify(screenshots || []),
-          id,
-        ],
+      return res.status(200).json({
+        success: true,
+        message: req.method === "PUT" ? "Proyecto actualizado con éxito." : "Proyecto guardado con éxito.",
+        id: projId,
       });
-
-      return res.status(200).json({ success: true, message: "Proyecto actualizado con éxito." });
     }
 
     if (req.method === "DELETE") {
