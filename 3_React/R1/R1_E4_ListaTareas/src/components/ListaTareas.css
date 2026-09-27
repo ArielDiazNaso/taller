@@ -1,0 +1,178 @@
+/* ── Tarjeta principal ── */
+.todo-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(168, 85, 247, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Input de nueva tarea ── */
+.task-input-group .form-control {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0.75rem 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.task-input-group .form-control::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.55;
+}
+
+.task-input-group .form-control:focus {
+  background: var(--card-bg);
+  border-color: var(--primary-color);
+  box-shadow:
+    0 0 0 3px var(--glow-primary),
+    0 0 20px var(--glow-primary);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.task-input-group .btn {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border: none;
+  color: #ffffff;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-weight: 700;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.task-input-group .btn:hover {
+  box-shadow: 0 6px 20px var(--glow-primary);
+  transform: translateX(1px);
+}
+
+/* ── Selector de prioridad ── */
+.priority-select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.priority-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--glow-primary);
+}
+
+/* ── Botones de filtro ── */
+.filter-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-filter {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: 2rem;
+  padding: 0.35rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-filter:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  box-shadow: 0 0 10px var(--glow-primary);
+}
+
+.btn-filter.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 4px 14px var(--glow-primary);
+}
+
+/* ── Ítems de tarea ── */
+.task-item {
+  background: var(--task-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1.15rem;
+  transition: all 0.2s ease;
+}
+
+.task-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 12px var(--glow-primary);
+  transform: translateX(2px);
+}
+
+.task-item.completed {
+  opacity: 0.5;
+  border-color: transparent;
+}
+
+.task-text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* ── Badges de prioridad ── */
+.priority-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2em 0.6em;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-alta {
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.priority-media {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.priority-baja {
+  background: rgba(34, 211, 238, 0.12);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+/* ── Estado vacío ── */
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.6;
+}

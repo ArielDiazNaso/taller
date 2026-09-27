@@ -1,0 +1,288 @@
+/**
+ * ProfileCard.module.css
+ *
+ * Estilos del componente ProfileCard (Tarjeta de Perfil).
+ *
+ * Principios de diseño aplicados:
+ *   - CSS Modules: alcance local, sin colisiones de clase.
+ *   - Variables CSS (custom properties): soporte nativo Light/Dark mode
+ *     mediante el atributo [data-theme] definido en globals.css.
+ *   - Mobile-first: los estilos base son para móvil; las media queries
+ *     amplían el diseño en pantallas mayores.
+ *   - Tipografía fluida con clamp(): escala suavemente entre breakpoints.
+ *   - Accesibilidad: respeto de prefers-reduced-motion, contraste adecuado
+ *     y foco visible por defecto (heredado de globals.css).
+ *
+ * Estructura del módulo:
+ *   1. .card           — Contenedor exterior (sombra, bordes, fondo).
+ *   2. .banner         — Franja decorativa superior (gradiente animado).
+ *   3. .inner          — Contenedor interior centrado.
+ *   4. .avatarWrapper  — Avatar solapado + fallback de iniciales.
+ *   5. .header         — Nombre + profesión.
+ *   6. Animaciones     — bannerShift + prefers-reduced-motion.
+ *   7. Breakpoints     — Ajustes para tablet/desktop.
+ */
+
+/* ============================================================
+   1. CONTENEDOR RAÍZ — .card
+   ============================================================ */
+
+/**
+ * Tarjeta exterior.
+ *   - max-width fluida: móvil ocupa casi todo el ancho disponible;
+ *     en desktop se fija en ~400px para una lectura cómoda.
+ *   - overflow: hidden para que el banner no se salga de las esquinas
+ *     redondeadas.
+ *   - Sombra suave que se refuerza en hover (elevación sutil).
+ *   - Borde sutil con variable de tema (diferente en light vs dark).
+ */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;          /* 352px — tamaño base en móvil */
+  margin: 0 auto;            /* centrado horizontal por defecto */
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  isolation: isolate;        /* contexto de apilamiento propio */
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  /* Transición suave de estados hover/focus. */
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+/* Efecto hover: eleva ligeramente la tarjeta. */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-medium);
+}
+
+/* ============================================================
+   2. BANNER DECORATIVO SUPERIOR — .banner
+   ============================================================ */
+
+/**
+ * Franja superior con gradiente animado.
+ *   - Usa --accent-gradient del tema actual (cambia en light/dark).
+ *   - Altura fluida entre 88px y 128px según viewport.
+ *   - Posición absoluta porque está "detrás" del contenido.
+ */
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(5.5rem, 22vh, 8rem);
+  background: var(--accent-gradient);
+  background-size: 200% 200%;
+  animation: bannerShift 10s ease-in-out infinite;
+  opacity: 0.9;
+  z-index: 0;          /* queda debajo de .inner (z-index: 1) */
+}
+
+/* ============================================================
+   3. CONTENEDOR INTERIOR — .inner
+   ============================================================ */
+
+/**
+ * Área de contenido principal.
+ *   - z-index > banner para que el texto y avatar estén por encima.
+ *   - Layout vertical centrado (flex-col + align-items: center).
+ *   - padding-top grande para dejar espacio al avatar solapado.
+ */
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.125rem);
+  /*  ↑ arriba   → laterales  ↓ abajo */
+  padding:
+    clamp(7rem, 18vh, 9rem)
+    clamp(1rem, 3vw, 1.75rem)
+    clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+
+/* ============================================================
+   4. AVATAR + FALLBACK DE INICIALES
+   ============================================================ */
+
+/**
+ * Wrapper del avatar.
+ *   - Posición absoluta para solapar el avatar sobre el banner.
+ *   - left: 50% + translateX(-50%) = centrado perfecto.
+ *   - Tamaño fluido: entre 80px y 104px de diámetro.
+ *   - Padding de 4px crea un "anillo" blanco del color del fondo
+ *     de la tarjeta, que da sensación de marco.
+ */
+.avatarWrapper {
+  position: absolute;
+  top: clamp(3.5rem, 10vh, 5rem);
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: clamp(5rem, 14vw, 6.5rem);
+  height: clamp(5rem, 14vw, 6.5rem);
+  border-radius: var(--radius-full);    /* círculo perfecto */
+  background: var(--bg-elevated);        /* color del "anillo" */
+  padding: 0.25rem;                      /* grosor del anillo */
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+  overflow: hidden;
+}
+
+/**
+ * Imagen de avatar.
+ *   - object-fit: cover recorta la imagen al círculo sin deformarla.
+ *   - object-position: center centra el recorte.
+ *   - z-index: 2 se superpone al fallback de iniciales.
+ */
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/**
+ * Fallback textual (iniciales).
+ *   - inset: 0.25rem respeta el padding del wrapper.
+ *   - Si la imagen de avatar carga correctamente, esta capa queda
+ *     tapada; si no, las iniciales son visibles.
+ *   - Usa el mismo gradiente del banner pero en reversa.
+ */
+.avatarFallback {
+  position: absolute;
+  inset: 0.25rem;
+  border-radius: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-inverse);
+  background: var(--accent-gradient);
+  background-size: 200% 200%;
+  animation: bannerShift 8s ease-in-out infinite reverse;
+}
+
+/* ============================================================
+   5. CABECERA TEXTUAL — .header, .name, .profession
+   ============================================================ */
+
+/**
+ * Bloque de nombre + profesión.
+ *   - margin-top deja espacio suficiente para el avatar solapado
+ *     (el .inner empieza con padding-top pero el avatar está
+ *     posicionado absolutamente, así que añadimos margen extra).
+ */
+.header {
+  margin-top: clamp(2rem, 5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+/**
+ * Nombre completo.
+ *   - font-display (Space Grotesk) para un look moderno.
+ *   - Truncado a una sola línea con ellipsis por si el nombre
+ *     fuera extremadamente largo.
+ */
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/**
+ * Profesión / cargo.
+ *   - Color de acento para diferenciarlo visualmente del nombre.
+ *   - Peso semibold (600) para mantener legibilidad siendo más pequeño.
+ */
+.profession {
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--accent-primary);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================================
+   6. ANIMACIONES + ACCESIBILIDAD
+   ============================================================ */
+
+/**
+ * Desplazamiento del gradiente.
+ * Hace que el banner y el fallback de avatar tengan un "efecto vivo"
+ * moviendo el punto focal del gradiente de izquierda a derecha.
+ */
+@keyframes bannerShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/**
+ * Respeta la preferencia del sistema "reducir movimiento".
+ *   - Desactiva transformaciones de hover.
+ *   - Desactiva animaciones de gradiente.
+ * Mejora la experiencia para usuarios con vestibulares sensibles.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover {
+    transform: none;
+    transition: none;
+  }
+
+  .banner,
+  .avatarFallback {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   7. BREAKPOINTS (mobile-first)
+   ============================================================ */
+
+/**
+ * Tablet (≥ 640px): aumentamos ligeramente la anchura máxima
+ * de la tarjeta para aprovechar el espacio extra.
+ */
+@media (min-width: 40rem) {
+  .card {
+    max-width: 24rem;   /* 384px */
+  }
+}
+
+/**
+ * Desktop (≥ 1024px): anchura máxima final y confortable.
+ */
+@media (min-width: 64rem) {
+  .card {
+    max-width: 25rem;   /* 400px */
+  }
+}

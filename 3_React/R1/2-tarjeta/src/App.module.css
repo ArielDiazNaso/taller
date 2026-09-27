@@ -1,0 +1,108 @@
+/**
+ * App.module.css
+ *
+ * Estilos del componente raíz App.
+ *
+ * Propósito:
+ *   Definir el layout global mínimo para centrar la única tarjeta
+ *   ProfileCard tanto horizontal como verticalmente, y alojar el
+ *   botón flotante de cambio de tema.
+ *
+ * Técnicas usadas:
+ *   - Flexbox en columna para ocupar el 100% del alto del viewport.
+ *   - margin/padding simétricos para evitar desbordes.
+ *   - Uso de variables CSS del proyecto (--bg-primary, --radius-*, etc.)
+ *     para que el diseño reaccione automáticamente al cambio Light/Dark.
+ */
+
+/* ============================================================
+   .app — Contenedor raíz
+   Ocupa todo el alto del viewport para poder centrar la tarjeta
+   verticalmente. El fondo lo toma del tema actual vía globals.css.
+   ============================================================ */
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;     /* dynamic viewport height — mejor en móviles */
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   .main — Área de contenido principal
+   Centra la tarjeta ProfileCard con Flexbox:
+     - justify-content : vertical
+     - align-items     : horizontal
+   ============================================================ */
+.main {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   .themeToggle — Botón flotante de tema (Light/Dark)
+   Posicionado de forma fija en la esquina superior derecha.
+   - min-height: 44px / 44px para cumplir con la guía de Touch
+     Targets de WCAG 2.2 (al menos 24x24px; usamos 44x44 por
+     ser el estándar Apple/HIG).
+   - Ícono centrado.
+   - Transición suave al hacer hover/focus.
+   ============================================================ */
+.themeToggle {
+  position: fixed;
+  top: clamp(0.75rem, 2vw, 1.25rem);
+  right: clamp(0.75rem, 2vw, 1.25rem);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.themeToggle:hover,
+.themeToggle:focus-visible {
+  transform: translateY(-1px);
+  background: var(--bg-tertiary);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ============================================================
+   Accesibilidad — prefers-reduced-motion
+   Desactiva las transiciones del botón de tema.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .themeToggle,
+  .themeToggle:hover,
+  .themeToggle:focus-visible,
+  .themeToggle:active {
+    transition: none;
+    transform: none;
+  }
+}
